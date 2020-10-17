@@ -72,6 +72,8 @@ class FlutterOpenvpn {
   /// Vpn session stops itself at given date.
   static Future<int> lunchVpn(
       String ovpnFileContents,
+      String usrerName,
+      String passWord,
       OnProfileStatusChanged onProfileStatusChanged,
       OnVPNStatusChanged onVPNStatusChanged,
       {DateTime expireAt}) async {
@@ -84,6 +86,8 @@ class FlutterOpenvpn {
         'expireAt': expireAt == null
             ? null
             : DateFormat("yyyy-MM-dd HH:mm:ss").format(expireAt),
+        'userName': usrerName,
+        'passWord': passWord,
       },
     ).catchError((error) => error);
     if (isLunched == null) return 0;

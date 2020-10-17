@@ -80,6 +80,8 @@ public class FlutterOpenvpnPlugin implements FlutterPlugin, MethodCallHandler, A
       } else if(call.method.equals("lunch")){
         String config = call.argument("ovpnFileContent");
         String expireAt = call.argument("expireAt");
+        String username = call.argument("userName");
+        String password = call.argument("passWord");
         if(vpn == null) {
           result.error("-1", "OpenVpnPlugin not initialized", null);
           return;
@@ -100,7 +102,7 @@ public class FlutterOpenvpnPlugin implements FlutterPlugin, MethodCallHandler, A
             channel.invokeMethod(status , null);
           }
         });
-        vpn.launchVPN(config , expireAt);
+        vpn.launchVPN(config , username, password, expireAt);
 
 
       }else if(call.method.equals("stop")){
